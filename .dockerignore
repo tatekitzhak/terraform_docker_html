@@ -1,0 +1,75 @@
+# ========================
+# Terraform
+# ========================
+# Compiled files
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Module and provider directories
+.terraform/
+.terraform.lock.hcl
+
+# Variables and secrets (Never commit these!)
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash logs
+crash.log
+
+# ========================
+# Docker
+# ========================
+# Dependency directories
+# (If you are copying node_modules or similar into the image)
+node_modules/
+**/node_modules/
+npm-debug.log*
+
+# Docker Compose overrides
+docker-compose.override.yml
+
+# Specific log files
+.docker/
+*.log
+
+.cache/
+**/.cache/
+
+/.pnp
+.pnp.js
+
+Dockerfile*
+docker-compose*
+.dockerignore
+.git
+.gitignore
+README.md
+LICENSE
+.vscode
+Makefile
+helm-charts
+
+.editorconfig
+
+.idea
+/.idea/
+
+# ========================
+# General / OS
+# ========================
+**/.DS_Store
+.DS_Store
+Thumbs.db
+.env
+.venv/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+bin/
+obj/
