@@ -80,6 +80,9 @@ resource "docker_container" "web_server" {
 }
 ```
 ## Step 3: Run Terraform Basics
+
+`terraform init -> terraform validate -> terraform plan -> terraform apply -> terraform destroy`
+
 Now, open your terminal in that directory and follow the standard Terraform workflow.
 
 1. Initialize (`terraform init`)
@@ -87,25 +90,28 @@ This downloads the Docker provider plugin so Terraform can talk to your Docker e
 
 Bash
 `terraform init`
-2. Plan (terraform plan)
+
+2. `terraform validate`
+
+3. Plan (terraform plan)
 This shows you what Terraform intends to do. It will tell you it's going to build one image and create one container.
 
 Bash
 `terraform plan`
 
-3. Apply (`terraform apply`)
+4. Apply (`terraform apply`)
 This executes the plan. When prompted, type yes.
 
 Bash
 `terraform apply`
 
 ## Step 4: Verify Your Work
-1. Check Docker: Run `docker ps` in your terminal. You should see `terraform-web-container` running.
+- Check Docker: Run `docker ps` in your terminal. You should see `terraform-web-container` running.
 
-2. View the Page: Open your browser and go to `http://localhost:8080`. You should see your "Hello from Terraform" page!
+- View the Page: Open your browser and go to `http://localhost:8080`. You should see your "Hello from Terraform" page!
 
 Cleanup
 When you’re done, you can tear everything down (stop and remove the container and image) with one command:
 
 Bash
-`terraform destroy`
+5. `terraform destroy`
