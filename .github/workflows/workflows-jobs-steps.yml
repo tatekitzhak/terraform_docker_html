@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: Hello job-1
         run: echo "A job-1 running..."
-      - name: Create a file
-        run: touch _file.txt
+      - name: Create a text file and write content
+        run: echo "Hello text!" > filename.txt
       - name: List all files in the repository (Linux/macOS)
         run: ls 
   job-2: ###
