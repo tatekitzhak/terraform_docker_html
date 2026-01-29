@@ -91,6 +91,8 @@ This downloads the Docker provider plugin so Terraform can talk to your Docker e
 Bash
 `terraform init`
 
+2. `terraform fmt` - the Terraform CLI that automatically reformats your Terraform configuration files (.tf) to a canonical format and style.
+
 2. `terraform validate`
 
 3. Plan (terraform plan)
@@ -113,5 +115,10 @@ Bash
 Cleanup
 When you’re done, you can tear everything down (stop and remove the container and image) with one command:
 
-Bash
-5. `terraform destroy`
+5. State - The command used to list the resource addresses for all resources currently managed by the Terraform state file. It provides an overview of the infrastructure that Terraform knows about, which is useful for inspection and managing complex configurations. 
+Bash: `terraform state list`
+
+6. `terraform state show aws_instance.web_app`
+Bash:
+
+7. `terraform destroy`
