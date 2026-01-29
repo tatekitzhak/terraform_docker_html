@@ -1,0 +1,22 @@
+name: Workflows, Jobs, and Steps
+
+on: [push]
+
+jobs:
+  job-1:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "A job-1 running..."
+  job-2:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "A job-2 running..."
+  job-3:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: echo "A job-3 running..."
+  job-say-hello-inline-python:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: print("A job job-say-hello-inline-python from python shel script!")
+        shell: python
