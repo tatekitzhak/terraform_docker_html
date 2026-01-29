@@ -3,20 +3,26 @@ name: Workflows, Jobs, and Steps
 on: [push]
 
 jobs:
-  job-1:
+  job-1: ###
     runs-on: ubuntu-24.04
     steps:
-      - run: echo "A job-1 running..."
-  job-2:
+      - name: Hello job-1
+        run: echo "A job-1 running..."
+      - name: List all files in the repository (Linux/macOS)
+        run: ls 
+  job-2: ###
     runs-on: ubuntu-24.04
     steps:
-      - run: echo "A job-2 running..."
-  job-3:
+      - name: Hello job-1
+        run: echo "A job-2 running..."
+  job-3: ##
     runs-on: ubuntu-24.04
     steps:
-      - run: echo "A job-3 running..."
-  job-say-hello-inline-python:
+      - name: Hello job-1
+        run: echo "A job-3 running..."
+  job-say-hello-inline-python: ##
     runs-on: ubuntu-24.04
     steps:
-      - run: print("A job job-say-hello-inline-python from python shel script!")
+      - name: Hello job-1
+        run: print("A job job-say-hello-inline-python from python shel script!")
         shell: python
