@@ -11,7 +11,7 @@ jobs:
       - name: Create a text file and write content
         run: echo "Hello text!" > filename.txt
       - name: List all files in the repository (Linux/macOS)
-        run: ls 
+        run: ls && cat filename.txt
   job-2: ###
     runs-on: ubuntu-24.04
     steps:
