@@ -8,10 +8,10 @@ jobs:
     steps:
       - name: Hello job-1
         run: echo "A job-1 running..."
+      - name: Create a file
+        run: touch _file.txt
       - name: List all files in the repository (Linux/macOS)
         run: ls 
-      - name: List all files in the GITHUB_WORKSPACE
-        run: ls -R ${{ github.workspace }}
   job-2: ###
     runs-on: ubuntu-24.04
     steps:
