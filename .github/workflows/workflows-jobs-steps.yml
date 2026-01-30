@@ -1,4 +1,4 @@
-name: Workflows, Jobs, and Steps
+name: Workflows-Jobs-and-Steps
 
 on: [push]
 
@@ -20,14 +20,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v6 #The command uses: actions/checkout@v4 (or v6) is the act of downloading your code from the GitHub servers onto that virtual machine.
 
-      - name: List github repository files
-        run: |
-          if [ -z "$(ls -A . 2>/dev/null)" ]; then
-              echo "null"
-          else
-              echo "Directory is not empty:"
-              ls -la
-          fi
+      - name: Executing Shell Script
+        run: ./example_shell_script.sh
   job-3-downloading-code-from-the-GitHub-servers-onto-this-virtual-machine: 
     runs-on: ubuntu-24.04
     steps:
