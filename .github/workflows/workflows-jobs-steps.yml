@@ -15,8 +15,13 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: List github repository files
-        run: -z "$(ls -A /path/to/directory)" && echo "null"
-        
+        run: |
+          if [ -z "$(ls -A . 2>/dev/null)" ]; then
+              echo "null"
+          else
+              echo "Directory is not empty"
+          fi
+
       - name: Checkout Repo
         uses: actions/checkout@v6 #The command uses: actions/checkout@v4 (or v6) is the act of downloading your code from the GitHub servers onto that virtual machine.
 
