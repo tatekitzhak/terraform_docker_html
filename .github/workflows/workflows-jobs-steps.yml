@@ -3,26 +3,23 @@ name: Workflows, Jobs, and Steps
 on: [push]
 
 jobs:
-  job-1: ### Linux List all files
+  job-1-Linux-List-all-files:
     runs-on: ubuntu-24.04
     steps:
-      - name: List all files in the repository (Linux/macOS)
-        run: echo "A job-1 running..."
-      
       - name: Create a text file and write content
         run: echo "Hello text!" > filename.txt
 
-      - name: List all files in the repository (Linux/macOS)
+      - name: List all files in the virtual machine (Linux/macOS)
         run: ls && cat filename.txt
-  job-2: ### GitHub List all repo files
+  job-2-GitHub-List-all-repo-files:
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v6
-        
-      - name: List github file
+      - name: List github repository files
         run: ls
-  job-3: ##
+      - name: Checkout Repo
+        uses: actions/checkout@v6 #The command uses: actions/checkout@v4 (or v6) is the act of downloading your code from the GitHub servers onto that virtual machine.
+
+  job-3-downloading-code-from-the-GitHub-servers-onto-this-virtual-machine: 
     runs-on: ubuntu-24.04
     steps:
       - name: Hello job-3
