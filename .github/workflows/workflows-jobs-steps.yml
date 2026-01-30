@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Docker Build 
-        run: echo ${{env.CONTAINER_REGISTRY}}/${{env.DOCKER_USERNAME}}/${{env.IMAGE_NAME}}/${{secrets.DOCKER_PASSWORD}}
+        run: echo ${{env.CONTAINER_REGISTRY}}/${{env.DOCKER_USERNAME}}/${{env.IMAGE_NAME}}/${{secrets.DOCKER_PASSWORD_1}}
   job-build: # downloading-code-from-the-GitHub-servers-onto-this-virtual-machine
     runs-on: ubuntu-24.04
     steps:
