@@ -3,7 +3,7 @@ name: Workflows-Jobs-and-Steps
 on: [push]
 
 jobs:
-  job-build-downloading-code-from-the-GitHub-servers-onto-this-virtual-machine:
+  job-build: # downloading-code-from-the-GitHub-servers-onto-this-virtual-machine
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repo
@@ -12,7 +12,8 @@ jobs:
       - name: Sleep for 30 seconds
         run: sleep 30
 
-  job-test-GitHub-List-all-repo-files:
+  job-test: #GitHub-List-all-repo-files:
+    needs: [job-build]
     runs-on: ubuntu-24.04
     steps:
       - name: Sleep for 10 seconds
@@ -23,7 +24,8 @@ jobs:
           chmod +x example_shell_script.sh
           ./example_shell_script.sh
 
-  job-deploy-Linux-List-all-files: 
+  job-deploy: #Linux-List-all-files: 
+    needs: [job-test]
     runs-on: ubuntu-24.04
     steps:
       - name: Create a text file and write content
