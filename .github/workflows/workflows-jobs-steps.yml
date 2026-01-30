@@ -22,7 +22,7 @@ jobs:
 
       - name: Executing Shell Script
         run: |
-          chmod +x
+          chmod +x example_shell_script.sh
           ./example_shell_script.sh
   job-3-downloading-code-from-the-GitHub-servers-onto-this-virtual-machine: 
     runs-on: ubuntu-24.04
