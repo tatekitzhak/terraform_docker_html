@@ -23,7 +23,8 @@ jobs:
           if [ -z "$(ls -A . 2>/dev/null)" ]; then
               echo "null"
           else
-              echo "Directory is not empty"
+              echo "Directory is not empty:"
+              ls
           fi
   job-3-downloading-code-from-the-GitHub-servers-onto-this-virtual-machine: 
     runs-on: ubuntu-24.04
