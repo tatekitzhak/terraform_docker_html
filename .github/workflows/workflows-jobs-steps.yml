@@ -14,11 +14,12 @@ jobs:
   job-2-GitHub-List-all-repo-files:
     runs-on: ubuntu-24.04
     steps:
+      - name: List github repository files
+        run: -z "$(ls -A /path/to/directory)" && echo "null"
+        
       - name: Checkout Repo
         uses: actions/checkout@v6 #The command uses: actions/checkout@v4 (or v6) is the act of downloading your code from the GitHub servers onto that virtual machine.
 
-      - name: List github repository files
-        run: ls
       
   job-3-downloading-code-from-the-GitHub-servers-onto-this-virtual-machine: 
     runs-on: ubuntu-24.04
