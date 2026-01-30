@@ -6,19 +6,20 @@ jobs:
   job-build: # downloading-code-from-the-GitHub-servers-onto-this-virtual-machine
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v6 #The command uses: actions/checkout@v4 (or v6) is the act of downloading your code from the GitHub servers onto that virtual machine.
-
+     
       - name: Sleep for 30 seconds
-        run: sleep 30
+        run: sleep 10
 
   job-test: #GitHub-List-all-repo-files:
     needs: [job-build]
     runs-on: ubuntu-24.04
     steps:
       - name: Sleep for 10 seconds
-        run: sleep 10
-        
+        run: sleep 5
+      
+      - name: Checkout Repo
+        uses: actions/checkout@v6 #The command uses: actions/checkout@v4 (or v6) is the act of downloading your code from the GitHub servers onto that virtual machine.
+
       - name: Executing Shell Script
         run: |
           chmod +x example_shell_script.sh
@@ -37,6 +38,7 @@ jobs:
           ls  -ltra && cat filename.txt
 
   job-complete-python-shell-script: ##
+    needs: [job-build, job-test, job-deploy]
     runs-on: ubuntu-24.04
     steps:
       - name: job-complete-python-shell-script
