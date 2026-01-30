@@ -2,7 +2,17 @@ name: Workflows-Jobs-and-Steps
 
 on: [push]
 
+env:
+  CONTAINER_REGISTRY: docker.io
+  DOCKER_USERNAME: tatekio
+  IMAGE_NAME: github-action-nginx
+
 jobs:
+  docker:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Docker Build 
+        run: echo ${{env.CONTAINER_REGISTRY}}/${{env.DOCKER_USERNAME}}/${{env.IMAGE_NAME}}
   job-build: # downloading-code-from-the-GitHub-servers-onto-this-virtual-machine
     runs-on: ubuntu-24.04
     steps:
