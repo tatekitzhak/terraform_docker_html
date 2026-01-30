@@ -10,7 +10,9 @@ jobs:
         run: echo "Hello text!" > filename.txt
 
       - name: List all files in the virtual machine (Linux/macOS)
-        run: ls && cat filename.txt
+        run:  |
+          pwd
+          ls  -ltra && cat filename.txt
   job-2-GitHub-List-all-repo-files:
     runs-on: ubuntu-24.04
     steps:
@@ -24,7 +26,7 @@ jobs:
               echo "null"
           else
               echo "Directory is not empty:"
-              ls
+              ls -la
           fi
   job-3-downloading-code-from-the-GitHub-servers-onto-this-virtual-machine: 
     runs-on: ubuntu-24.04
