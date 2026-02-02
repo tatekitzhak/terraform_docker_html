@@ -37,21 +37,21 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
       
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v3
       
       - name: Build and push Docker image by script
         run: |
           # 1. Build the image
-          docker build -t webapp_ci_github_action .
+          # docker build -t webapp_ci_github_action .
           
           
           # 2. Login using the secure pipe method (Fixes the TTY error)
-          echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKER_ACCESS_TOKEN }} / ${{ secrets.DOCKER_USERNAME }} / ${{secrets.DOCKER_PASSWORD}}" 
           
           # 3. Tag and Push
-          docker tag webapp_ci_github_action ranitzahak/ci_pipline_github_action
-          docker push ranitzahak/ci_pipline_github_action
+          #docker tag webapp_ci_github_action ranitzahak/ci_pipline_github_action
+          #docker push ranitzahak/ci_pipline_github_action
 
 
   test: #GitHub-List-all-repo-files:
