@@ -30,7 +30,8 @@ jobs:
   #         tags: ${{steps.meta.outputs.tags}}
   #         labels: ${{steps.meta.outputs.labels}}
 
-  build: # downloading-code-from-the-GitHub-servers-onto-this-virtual-machine
+  build: 
+    name: Build Docker image to Push Docker Hub
     runs-on: ubuntu-24.04
     steps:
       - name: Check out the repo
@@ -38,11 +39,17 @@ jobs:
       
       - name: Build and push Docker image by script
         run: |
-          docker build -t . webapp_ci_github_action
-          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_ACCESS_TOKEN}}
+          # 1. Build the image (Tag name first, then context)
+          docker build -t webapp_ci_github_action .
+          
+          # 2. Login securely using piping
+          echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          
+          # 3. Tag for the registry
           docker tag webapp_ci_github_action ranitzahak/ci_pipline_github_action
+          
+          # 4. Push
           docker push ranitzahak/ci_pipline_github_action
-     
 
 
   test: #GitHub-List-all-repo-files:
