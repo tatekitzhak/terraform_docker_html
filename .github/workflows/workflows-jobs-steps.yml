@@ -39,15 +39,15 @@ jobs:
       
       - name: Build and push Docker image by script
         run: |
-          # Build the image correctly
+          # 1. Build the image
           docker build -t webapp_ci_github_action .
           
-          # Use --password-stdin for better security and to avoid log warnings
+          # 2. Login using the secure pipe method (Fixes the TTY error)
           echo "${{ secrets.DOCKER_ACCESS_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
           
-          # Tag and Push
-          docker tag webapp_ci_github_action ${{ secrets.DOCKER_USERNAME }}/ci_pipline_github_action
-          docker push ${{ secrets.DOCKER_USERNAME }}/ci_pipline_github_action
+          # 3. Tag and Push
+          docker tag webapp_ci_github_action ranitzahak/ci_pipline_github_action
+          docker push ranitzahak/ci_pipline_github_action
 
 
   test: #GitHub-List-all-repo-files:
