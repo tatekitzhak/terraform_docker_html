@@ -3,41 +3,49 @@ name: CI Pipline
 on: [push]
 
 jobs:
-  push_to_docker_registry:
-    name: Push Docker image to Docker Hub
+  # push_to_docker_registry:
+  #   name: Push Docker image to Docker Hub
+  #   runs-on: ubuntu-24.04
+  #   steps:
+  #     - name: Check out the repo
+  #       uses: actions/checkout@v6
+      
+  #     - name: Log in to Docker Hub 
+  #       uses: docker/login-action@v3
+  #       with: 
+  #         username: ${{secrets.DOCKER_USERNAME}}
+  #         password: ${{secrets.DOCKER_PASSWORD}}
+          
+  #     - name: Extract metadata (tags, labels) for Docker
+  #       id: meta
+  #       uses: docker/metadata-action@v5
+  #       with:
+  #         images: ranitzahak/test_web_app
+
+  #     - name: Build and push Docker image
+  #       uses: docker/build-push-action@v6
+  #       with:
+  #         context: .
+  #         push: true
+  #         tags: ${{steps.meta.outputs.tags}}
+  #         labels: ${{steps.meta.outputs.labels}}
+
+  build: # downloading-code-from-the-GitHub-servers-onto-this-virtual-machine
     runs-on: ubuntu-24.04
     steps:
       - name: Check out the repo
         uses: actions/checkout@v6
       
-      - name: Log in to Docker Hub 
-        uses: docker/login-action@v3
-        with: 
-          username: ${{secrets.DOCKER_USERNAME}}
-          password: ${{secrets.DOCKER_PASSWORD}}
-          
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ranitzahak/test_web_app
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ${{steps.meta.outputs.tags}}
-          labels: ${{steps.meta.outputs.labels}}
-  job-build: # downloading-code-from-the-GitHub-servers-onto-this-virtual-machine
-    runs-on: ubuntu-24.04
-    steps:
+      - name: Build and push Docker image by script
+        run: |
+          docker build -t . webapp_ci_github_action
+          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_ACCESS_TOKEN}}
+          docker tag webapp_ci_github_action ranitzahak/ci_pipline_github_action
+          docker push ranitzahak/ci_pipline_github_action
      
-      - name: Sleep for 30 seconds
-        run: sleep 10
 
-  job-test: #GitHub-List-all-repo-files:
-    needs: [job-build]
+
+  test: #GitHub-List-all-repo-files:
     runs-on: ubuntu-24.04
     steps:
       - name: Sleep for 10 seconds
@@ -51,8 +59,8 @@ jobs:
           chmod +x example_shell_script.sh
           ./example_shell_script.sh
 
-  job-deploy: #Linux-List-all-files: 
-    needs: [job-test]
+  deploy: #Linux-List-all-files: 
+    
     runs-on: ubuntu-24.04
     steps:
       - name: Create a text file and write content
@@ -64,7 +72,7 @@ jobs:
           ls  -ltra && cat filename.txt
 
   job-complete-python-shell-script: ##
-    needs: [job-build, job-test, job-deploy]
+    # needs: [job-build, job-test, job-deploy]
     runs-on: ubuntu-24.04
     steps:
       - name: job-complete-python-shell-script
