@@ -1,0 +1,10 @@
+# .github/workflows/ci.yml
+name: Run Tests
+on: [push] # Triggered by a push event
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Running tests..."
+      # ... other test steps

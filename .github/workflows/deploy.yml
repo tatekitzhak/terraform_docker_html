@@ -1,0 +1,22 @@
+# .github/workflows/deploy.yml
+name: Deploy
+on:
+  workflow_run:
+    workflows: ["Run Tests"] # Specify the name of the upstream workflow
+    branches: [main]         # Limit to specific branches
+    types:
+      - completed            # Trigger when the workflow run is completed
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    # Condition to check if the 'Run Tests' workflow concluded with 'success'
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout code
+        # You may need to use a Personal Access Token (PAT) with appropriate permissions 
+        # for some operations in a workflow_run triggered job if GITHUB_TOKEN permissions are limited.
+        uses: actions/checkout@v4 
+      - name: Run deployment
+        run: echo "The tests passed. Starting deployment... ${{github.event.workflow_run}}"
+      # ... other deployment steps
