@@ -1,0 +1,21 @@
+name: Delete all workflow runs
+
+on:
+  workflow_dispatch: # Allows manual trigger from the Actions tab
+
+jobs:
+  delete-runs:
+    runs-on: ubuntu-latest
+    # permissions:
+    #   actions: write # Required permission to delete runs
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        # with:
+        #   token: ${{ secrets.GITHUB_TOKEN }}
+        #   repository: ${{ github.repository }}
+        #   delete_workflow_pattern: '*' # Targets all workflows
+        #   dry_run: false # Set to true first to test what will be deleted
+        #   keep_minimum_runs: 0 # Deletes all runs
+      - name: echo workflow
+        run: echo ${{secrets.GITHUB_TOKEN}}/${{ github.repository }}
