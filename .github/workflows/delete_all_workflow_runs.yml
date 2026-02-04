@@ -18,4 +18,4 @@ jobs:
         #   dry_run: false # Set to true first to test what will be deleted
         #   keep_minimum_runs: 0 # Deletes all runs
       - name: echo workflow
-        run: echo ${{secrets.GITHUB_TOKEN}}/${{ github.repository }}
+        run: echo "print workflow:" ${{secrets.GITHUB_TOKEN}}/${{ github.repository }}
