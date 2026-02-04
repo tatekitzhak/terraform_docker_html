@@ -40,19 +40,8 @@ jobs:
       # - name: Set up Docker Buildx
       #   uses: docker/setup-buildx-action@v3
       
-      - name: Build and push Docker image by script
-        run: |
-          # 1. Build the image
-          docker build -t webapp_ci_github_action .
-          
-          
-          # 2. Login using the secure pipe method (Fixes the TTY error)
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASSWORD}}
-          
-          # 3. Tag and Push
-          docker tag webapp_ci_github_action ranitzahak/ci_pipline_github_action
-          docker push ranitzahak/ci_pipline_github_action
-
+      - name: Create a text file and write content
+        run: echo "Build Docker image to Push Docker Hub"
 
   test: #GitHub-List-all-repo-files:
     runs-on: ubuntu-24.04
