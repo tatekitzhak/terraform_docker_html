@@ -11,20 +11,20 @@ jobs:
     steps:
       - name: echo workflow
         run: echo "print workflow::" ${{ github.token }}//${{secrets.GITHUB_TOKEN}}//${{ github.repository }}
-      # - name: Delete workflow runs
-      #   uses: Mattraiano/delete-workflow-runs@v2
-      #   with:
-      #     token: ${{ github.token }}
-      #     repository: ${{ github.repository }}
-      #     retain_days: 0
-      #     keep_minimum_runs: 0
-      
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2
+        uses: Mattraiano/delete-workflow-runs@v2
         with:
-          token: ${{ github.token  }}
+          token: ${{ github.token }}
           repository: ${{ github.repository }}
-          delete_workflow_pattern: '*' # Targets all workflows
-          dry_run: false # Set to true first to test what will be deleted
-          keep_minimum_runs: 0 # Deletes all runs
+          retain_days: 0
+          keep_minimum_runs: 0
+      
+      # - name: Delete workflow runs
+      #   uses: Mattraks/delete-workflow-runs@v2
+      #   with:
+      #     token: ${{ github.token  }}
+      #     repository: ${{ github.repository }}
+      #     delete_workflow_pattern: '*' # Targets all workflows
+      #     dry_run: false # Set to true first to test what will be deleted
+      #     keep_minimum_runs: 0 # Deletes all runs
 
