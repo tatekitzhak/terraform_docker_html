@@ -1,5 +1,5 @@
 # .github/workflows/deploy.yml
-name: Deploy
+name: Run Deploy
 on:
   workflow_run:
     workflows: ["Run Tests"] # Specify the name of the upstream workflow
@@ -18,5 +18,5 @@ jobs:
         # for some operations in a workflow_run triggered job if GITHUB_TOKEN permissions are limited.
         uses: actions/checkout@v4 
       - name: Run deployment
-        run: echo "The tests passed. Starting deployment... ${{github.event.workflow_run}}"
+        run: echo "The tests passed. Starting deployment... ${{toJSON(github.event.workflow_run)}}"
       # ... other deployment steps
