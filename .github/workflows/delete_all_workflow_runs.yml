@@ -18,12 +18,12 @@ jobs:
       #     repository: ${{ github.repository }}
       #     retain_days: 0
       #     keep_minimum_runs: 0
-      # - name: Delete workflow runs
-      #   uses: Mattraks/delete-workflow-runs@v2
-      #   with:
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     repository: ${{ github.repository }}
-      #     delete_workflow_pattern: '*' # Targets all workflows
-      #     dry_run: false # Set to true first to test what will be deleted
-      #     keep_minimum_runs: 0 # Deletes all runs
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token  }}
+          repository: ${{ github.repository }}
+          delete_workflow_pattern: '*' # Targets all workflows
+          dry_run: false # Set to true first to test what will be deleted
+          keep_minimum_runs: 0 # Deletes all runs
       
