@@ -21,13 +21,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{secrets.DOCKER_USERNAME}}/html_nginx
+          images: ranitzahak/html_nginx
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          repository: ${{secrets.DOCKER_USERNAME}}/html_nginx
           tags: ${{steps.meta.outputs.tags}}
           labels: ${{steps.meta.outputs.labels}}      
