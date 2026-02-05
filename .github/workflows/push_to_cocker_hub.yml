@@ -25,7 +25,7 @@ jobs:
           images: ${{secrets.DOCKER_USERNAME}}/html_nginx_2
 
       - name: print ${{steps.meta.outputs.tags}}
-        run: echo "Build Docker:" ${{toJSON(steps.meta.outputs)}}
+        run: echo "Build Docker- ${{toJSON(steps.meta)}}"
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
