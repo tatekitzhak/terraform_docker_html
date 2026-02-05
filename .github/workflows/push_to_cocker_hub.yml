@@ -28,6 +28,6 @@ jobs:
         with:
           context: .
           push: true
-          repository: 
+          repository: ${{secrets.DOCKER_USERNAME}}/html_nginx
           tags: ${{steps.meta.outputs.tags}}
           labels: ${{steps.meta.outputs.labels}}      
